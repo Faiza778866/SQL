@@ -199,4 +199,3 @@ DowngradedPlan AS (
 SELECT COUNT(*) AS num_downgrades
 FROM DowngradedPlan;
 
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/c3a93ab0-1a6a-4a6b-923c-105caaf785fc)
