@@ -1,29 +1,23 @@
 
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/5c137aeb-0c9b-48db-9211-79d14b77e87d)
-
 
 In this case study, two tables were created with the names of plans and subscriptions and then values were entered with insert function.
 # plans table
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/c7625a12-2ea9-4c12-bb7a-cc3f7b1400a4)
+
 
 # subscritions table
 
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/0167c43f-09e4-4fd2-996f-7f50e806c712)
 
-Different 
 #Customer Journey
 select s.customer_id, p.plan_name, s.start_date
 from subscriptions s
 JOIN plans p ON s.plan_id = p.plan_id;
   
-  ![image](https://github.com/MominaKhurram/SQL/assets/145676374/0e021e10-6468-4754-86d3-73dea005393e)
-
+ 
   /*1. How many customers has Foodie-Fi ever had? */
   SELECT COUNT(distinct customer_id) AS total_customers
   FROM subscriptions;
 
   
- ![image](https://github.com/MominaKhurram/SQL/assets/145676374/99a552c4-d0b2-4382-a3a0-7f24328112d3)
 
   
    /* 2. What is the monthly distribution of trial plan start_date values for our dataset - use  the start of the month as the group by value */
@@ -34,7 +28,6 @@ FROM subscriptions
 GROUP BY months
 ORDER BY months ;
 
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/17f70dd3-8bdd-4ec9-b3fd-42ffe2237c92)
 
   /*3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name */
   
@@ -46,8 +39,7 @@ ORDER BY months ;
   GROUP BY plan_name, p.plan_id
   ORDER BY p.plan_id;
   
-  ![image](https://github.com/MominaKhurram/SQL/assets/145676374/0b9ab664-8a94-4413-8ccc-24ae015792a1)
-
+  
   
 /*4. What is the customer count and percentage of customers who have churned rounded to 1 decimal place? */  
   
@@ -57,7 +49,6 @@ ROUND(count(*) / (SELECT COUNT(DISTINCT customer_id) FROM subscriptions)
   FROM subscriptions
   WHERE plan_id = 4;
 
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/b5e3f13c-0859-402a-b3f4-ac5b4161eefd)
 
   
 /* 5. How many customers have churned straight after their initial free trial - what percentage is
@@ -75,8 +66,8 @@ ROUND(count(*) / (SELECT COUNT(DISTINCT customer_id) FROM subscriptions)
         where plan_id = 4 and previous_plan = 0;
  
 
- ![image](https://github.com/MominaKhurram/SQL/assets/145676374/57dd5b11-8893-4c80-990e-3a6c90c9f1e5)
-
+ 
+ 
  
  
 /* 6. What is the number and percentage of customer plans after their initial free trial?*/
@@ -92,8 +83,6 @@ WITH CTE_next_plan AS (
         where next_plan is not null and plan_id = 0
         group by next_plan
         order by next_plan;
-
- ![image](https://github.com/MominaKhurram/SQL/assets/145676374/d3226eb2-57c7-4de8-98c1-1210eab05c96)
 
 
 /*7. What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?*/
@@ -117,7 +106,6 @@ from CTE_next_date
         group by plan_id, number_of_customer
         order by plan_id;
 
- ![image](https://github.com/MominaKhurram/SQL/assets/145676374/c9ad02ac-2019-463f-ad49-2e1d95823f88)
 
     
 /*8. How many customers have upgraded to an annual plan in 2020? */
@@ -129,7 +117,6 @@ where plan_id = 3
 )
 select count(* ) from cte_upgraded_annual_plan;
 
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/d39c8d94-36e5-4f15-b2c0-a4b33e0b57d1)
 
 
 /*9. How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi? */
@@ -151,7 +138,6 @@ SELECT
 FROM 
     AnnualPlanCustomers;
 
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/adeb9675-d7e2-4904-91c3-e90aea14032f)
 
 
 /* 10. Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60  days etc) */
@@ -189,8 +175,6 @@ FROM
 GROUP BY 
     period;
     
-![image](https://github.com/MominaKhurram/SQL/assets/145676374/88fe3590-73a0-4ec3-9499-acbe2d54483b)
-
 
 /* 11. How many customers downgraded from a pro monthly to a basic monthly plan in 2020?*/
 WITH ProMonthlyCustomers AS (
